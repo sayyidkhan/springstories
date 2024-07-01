@@ -21,7 +21,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    private final boolean USE_IN_MEMORY_USER_DETAILS = false;
     private final CustomUserDetailsService userDetailsService;
 
     @Autowired
