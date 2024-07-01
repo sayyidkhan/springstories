@@ -1,0 +1,17 @@
+{
+  "isbn": "9780141439594",
+  "title": "Frankenstein",
+  "authors": [
+    {
+      "name": "Mary Shelley",
+      "birthday": "08/30/1797"
+    },
+    {
+      "name": "Percy Bysshe Shelley",
+      "birthday": "08/04/1792"
+    }
+  ],
+  "year": 1832,
+  "price": 15.99,
+  "genre": "classic horror"
+}

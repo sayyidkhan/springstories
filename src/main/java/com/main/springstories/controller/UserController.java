@@ -9,6 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/auth")
 public class UserController {
@@ -54,6 +57,30 @@ public class UserController {
         customUserDetailsService.saveUser(userEntity);
 
         return new ResponseEntity<>("User registered successfully !", HttpStatus.OK);
+    }
+
+    @PostMapping("/multi_register")
+    public ResponseEntity<String> register(@RequestBody List<RegisterDTO> registerDTOList) {
+        List<String> errors = new ArrayList<>();
+
+        for (RegisterDTO registerDTO : registerDTOList) {
+            if (customUserDetailsService.existsByUsername(registerDTO.getUsername())) {
+                errors.add("Username '" + registerDTO.getUsername() + "' is already taken.");
+            } else {
+                UserEntity userEntity = new UserEntity();
+                userEntity.setUsername(registerDTO.getUsername());
+                userEntity.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
+                userEntity.setRole(registerDTO.getRole());
+
+                customUserDetailsService.saveUser(userEntity);
+            }
+        }
+
+        if (!errors.isEmpty()) {
+            return new ResponseEntity<>(errors.toString(), HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>("Users registered successfully!", HttpStatus.OK);
+        }
     }
 
 }
