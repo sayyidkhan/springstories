@@ -83,7 +83,9 @@ public class BookAndAuthorService {
             }
         }
 
+        System.out.println("--- find query ---");
         System.out.println(sb);
+        System.out.println("--- find query ---");
         Query query = entityManager.createNativeQuery(sb.toString(), BookEntity.class);
         return query.getResultList();
     }
