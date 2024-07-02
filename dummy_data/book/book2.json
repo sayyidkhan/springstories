@@ -1,0 +1,17 @@
+{
+  "isbn": "9780140437012",
+  "title": "Dracula",
+  "authors": [
+    {
+      "name": "Bram Stoker",
+      "birthday": "11/08/1847"
+    },
+    {
+      "name": "Mary Shelley",
+      "birthday": "08/30/1797"
+    }
+  ],
+  "year": 1897,
+  "price": 12.50,
+  "genre": "vampire fiction"
+}

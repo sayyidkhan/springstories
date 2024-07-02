@@ -1,0 +1,13 @@
+{
+  "isbn": "9780486282114",
+  "title": "Wuthering Heights",
+  "authors": [
+    {
+      "name": "Emily Brontë",
+      "birthday": "07/30/1818"
+    }
+  ],
+  "year": 1847,
+  "price": 18.75,
+  "genre": "Gothic fiction"
+}
