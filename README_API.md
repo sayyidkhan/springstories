@@ -22,16 +22,59 @@
 
 ### Usage
 
-1. `book/user/add` `[POST]`
-   - Authentication:
-     - username: regular_user
-     - password: 123
-     - role: user
+1. **Add book:** `book/user/add` `[POST]`
+    - Authentication:
+        - `username`: `regular_user`
+        - `password`: `123`
+        - `role`: `USER`
+        - only require to pass username and password using Basic Auth
    - you may take any of data from the `dummy_data/book/*`
    - recommended to add all of them (for the testing of later API's)
    - app will prevent adding the same object again
    
    **Expected Success output: Book Created Successfully**<br> 
    **Expected Failed output: Book already exists in the system !**<br>
-2. 
+   <br>
+2. **Update Book:** `book/user/update` `[PUT]`
+    - Authentication:
+        - `username`: `regular_user`
+        - `password`: `123`
+        - `role`: `USER`
+        - only require to pass username and password using Basic Auth
+   - you may take any of data from the `dummy_data/book/*` to perform the update
+   - all of the data can be updated, including the number of authors except IBSN
+   - it is recommended to add record using the add API prior to testing the UPDATE API
 
+   **Expected Success output: Book with ISBN 9780141439594 Updated Successfully**<br>
+   **Expected Failed output: Failed to update book: !**<br>
+   <br>
+3. **Find Book:** `localhost:9000/books/user/find?title=Dracula&author=MARY SHELLEY,BRAM STOKER` `[GET]`
+    - Authentication:
+        - `username`: `regular_user`
+        - `password`: `123`
+        - `role`: `USER`
+        - only require to pass username and password using Basic Auth
+    - using `query parameters` to filter through the records. must use either 1 at least or both can be used.
+    - search is case in-sensitive but still requires exact match
+    - `title` : put the title of the book. eg, Dracula
+    - `author`: put the name of the author, can put more than one author delimited by commas. adding more than 1 author is a AND operation.
+   - it is recommended to add record using the add API prior to testing the find API
+
+   **Expected Success output: [Object will returned in a list] **<br>
+   **Expected Failed output: [] **<br>
+   <br>
+4. **Delete Book:** `book/user/delete` `[DELETE]`
+    - Authentication:
+        - `username`: `admin_user`
+        - `password`: `123`
+        - `role`: `ADMIN`
+        - only require to pass username and password using Basic Auth
+   - using `query parameters` to filter through the records.
+   - `isbn` : the isbn of the book
+   - it is recommended to add record using the add API prior to testing the DELETE API
+   
+   > Note: only users with ADMIN in role, can delete records
+
+   **Expected Success output: Book with ISBN 9780486282114 deleted successfully**<br>
+   **Expected Failed output: Failed to update book: !**<br>
+   <br>
